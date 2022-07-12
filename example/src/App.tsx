@@ -1,4 +1,4 @@
-import {VisionCamera} from 'react-vision-camera/dist/index';
+import {VisionCamera} from 'react-vision-camera';
 
 function App() {
   return (
