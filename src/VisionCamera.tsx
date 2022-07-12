@@ -11,6 +11,9 @@ export interface CameraProps{
   desiredCamera?:string;
   desiredResolution?:Resolution;
   facingMode?:string;
+  onOpened?: (cam:HTMLVideoElement) => void;
+  onClosed?: () => void;
+  onDeviceListLoaded?: (list:MediaDeviceInfo[]) => void;
 }
 
 interface PlayOptions {
@@ -109,6 +112,9 @@ const VisionCamera = (props:CameraProps): React.ReactElement => {
           const track = tracks[index];
           track.stop() 
         }
+        if (props.onClosed) {
+          props.onClosed();
+        }
       }
     } catch (e){
       console.log(e);
@@ -132,11 +138,21 @@ const VisionCamera = (props:CameraProps): React.ReactElement => {
       const track = tracks[i];
       track.stop();  // stop the opened camera
     }
+    if (props.onDeviceListLoaded) {
+      props.onDeviceListLoaded(cameraDevices);
+    }
+  }
+
+  const onCameraOpened = () => {
+    console.log("onCameraOpened");
+    if (props.onOpened) {
+      props.onOpened(camera.current);
+    }
   }
 
   return (
     <div className="camera-container full">
-      <video className="camera full" ref={camera} muted autoPlay={true} playsInline={true}></video>
+      <video className="camera full" ref={camera} muted autoPlay={true} playsInline={true} onLoadedData={onCameraOpened}></video>
     </div>
   )
 }
