@@ -1,8 +1,9 @@
-import {VisionCamera,Resolution} from 'react-vision-camera';
+import {VisionCamera} from 'react-vision-camera';
+import "./App.css";
 
 function App() {
   return (
-    <div className="App">
+    <div className="camera-container">
       <VisionCamera 
         isActive={true}
         desiredCamera="founder"

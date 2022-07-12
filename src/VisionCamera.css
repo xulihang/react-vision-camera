@@ -1,0 +1,15 @@
+.camera-container {
+  position: relative;
+}
+      
+.camera {
+  position: absolute;
+  object-fit: cover;
+}
+      
+.full {
+  width:100%;
+  height:100%;
+  left:0;
+  top:0;
+}
