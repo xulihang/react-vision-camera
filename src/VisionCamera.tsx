@@ -35,6 +35,20 @@ const VisionCamera = (props:CameraProps): React.ReactElement => {
     }
   },[])
 
+  React.useEffect(() => {
+    if (props.isActive === true) {
+      playWithDesired();
+    }else{
+      stop();
+    }
+  }, [props.isActive]);
+
+  React.useEffect(() => {
+    if (props.isActive === true) {
+      playWithDesired();
+    }
+  }, [props.desiredCamera,props.desiredResolution,props.facingMode]);
+
   const playWithDesired = async () => {
     if (!devices.current) {
       await loadDevices(); // load the camera devices list if it hasn't been loaded
