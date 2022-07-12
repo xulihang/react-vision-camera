@@ -2,6 +2,13 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+If the app fails to use React Hooks, you may have duplicate React modules. You can run npm link to solve this.
+
+```
+npm link ../node_modules/react
+npm link ../node_modules/react-dom
+```
+
 ## Available Scripts
 
 In the project directory, you can run:
