@@ -3,6 +3,8 @@
 
 Camera component for React using `getUserMedia`. We can use this component for computer vision tasks like barcode scanning, text recognition, etc.
 
+[Online demo](https://shiny-naiad-b61af3.netlify.app/)
+
 ### Installation
 
 ```
