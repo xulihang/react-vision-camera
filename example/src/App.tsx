@@ -51,7 +51,6 @@ function App() {
           <VisionCamera 
             isActive={isActive}
             desiredCamera={desiredCamera}
-            facingMode="environment"
             desiredResolution={desiredResolution}
             onOpened={onOpened}
             onClosed={onClosed}
