@@ -145,7 +145,7 @@ const VisionCamera = (props:CameraProps): React.ReactElement => {
         const tracks = stream.getTracks();
         for (let index = 0; index < tracks.length; index++) {
           const track = tracks[index];
-          track.stop() 
+          track.stop();
         }
         if (props.onClosed) {
           props.onClosed();

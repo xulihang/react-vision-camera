@@ -1,14 +1,23 @@
 {
   "name": "react-vision-camera",
   "version": "1.0.0",
-  "description": "Camera component for React",
+  "description": "Camera component for React. We can use this component for computer vision tasks like barcode scanning, text recognition, etc.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
     "build": "tsc",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "Lihang Xu",
+  "files": [
+    "dist/"
+  ],
+  "author": {
+    "name": "Xu Lihang",
+    "email": "xulihanghai@gmail.com"
+  },
+  "repository": "github:xulihang/react-vision-camera",
+  "bugs": "https://github.com/xulihang/react-vision-camera/issues",
+  "homepage": "https://github.com/xulihang/react-vision-camera",
   "license": "MIT",
   "peerDependencies": {},
   "dependencies": {},
