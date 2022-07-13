@@ -1,6 +1,6 @@
 {
   "name": "react-vision-camera",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Camera component for React. We can use this component for computer vision tasks like barcode scanning, text recognition, etc.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",

@@ -18,7 +18,8 @@ npm install react-vision-camera
 import {VisionCamera} from 'react-vision-camera';
 
 function App() {
-  const [isActive,setIsActive] = React.useState(true);
+  const [isActive,setIsActive] = React.useState(true); //whether the camera is active
+  const [isPause,setIsPause] = React.useState(false); //whether the video is paused
   const onOpened = (cam:HTMLVideoElement,camLabel:string) => { // You can access the video element in the onOpened event
     console.log("opened"); 
   }
@@ -35,6 +36,7 @@ function App() {
     <div>
       <VisionCamera 
         isActive={isActive}
+        isPause={isPause}
         desiredCamera="back"
         desiredResolution={{width:1280,height:720}}
         onOpened={onOpened}
