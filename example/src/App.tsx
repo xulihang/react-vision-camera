@@ -1,5 +1,5 @@
-import React, { ChangeEvent } from 'react';
-import {Resolution, VisionCamera} from 'react-vision-camera';
+import React from 'react';
+import {VisionCamera} from 'react-vision-camera';
 import "./App.css";
 
 const presetResolutions = [

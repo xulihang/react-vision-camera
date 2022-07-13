@@ -1,5 +1,4 @@
 import React, { ReactNode } from 'react';
-import "./VisionCamera.css";
 
 export interface Resolution{
   width:number;
@@ -198,8 +197,12 @@ const VisionCamera = (props:CameraProps): React.ReactElement => {
   }
 
   return (
-    <div className="camera-container full">
-      <video className="camera full" ref={camera} muted autoPlay={true} playsInline={true} onLoadedData={onCameraOpened}></video>
+    <div 
+      style={{ position:"relative", width:"100%", height:"100%", left:0, top:0 }}>
+      <video 
+        style={{ position:"absolute", objectFit:"cover", width:"100%", height:"100%", left:0, top:0 }}
+        ref={camera} muted autoPlay={true} playsInline={true} 
+        onLoadedData={onCameraOpened}></video>
       {props.children}
     </div>
   )
