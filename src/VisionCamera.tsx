@@ -112,7 +112,12 @@ const VisionCamera = (props:CameraProps): React.ReactElement => {
         audio: false
       }
     }
-       
+  
+    if (options.facingMode) {
+      delete constraints["video"]["deviceId"];
+      constraints["video"]["facingMode"] = { exact: options.facingMode };
+    }
+
     if (options.desiredResolution) {
       constraints["video"]["width"] = options.desiredResolution.width;
       constraints["video"]["height"] = options.desiredResolution.height;
@@ -122,7 +127,12 @@ const VisionCamera = (props:CameraProps): React.ReactElement => {
       // Attach local stream to video element
       camera.current.srcObject = stream;
     }).catch(function(err) {
-      console.error('getUserMediaError', err, err.stack);
+      if (options.facingMode) { // facing mode not supported on desktop Chrome
+        delete options["facingMode"];
+        play(options);
+      }else{
+        console.error('getUserMediaError', err, err.stack);
+      }
     });
   }
      
