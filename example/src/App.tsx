@@ -1,17 +1,26 @@
 import React, { ChangeEvent } from 'react';
-import {VisionCamera} from 'react-vision-camera';
+import {Resolution, VisionCamera} from 'react-vision-camera';
 import "./App.css";
+
+const presetResolutions = [
+  {label:"ask 1920x1080", value:{width:1920,height:1080}},
+  {label:"ask 1280x720", value:{width:1280,height:720}},
+  {label:"ask 640x480", value:{width:640,height:480}}
+]
 
 function App() {
   const [isActive,setIsActive] = React.useState(true);
   const [cameras,setCameras] = React.useState([] as MediaDeviceInfo[]);
   const [selectedCameraLabel,setSelectedCameraLabel] = React.useState("");
   const [desiredCamera, setDesiredCamera] = React.useState("founder");
+  const [desiredResolution, setDesiredResolution] = React.useState({width:1280,height:720});
+  const [currentResolution, setCurrentResolution] = React.useState("");
   const resSel = React.useRef(null);
   const camSel = React.useRef(null);
   const onOpened = (cam:HTMLVideoElement,camLabel:string) => {
     console.log("opened");
     console.log(camLabel);
+    setCurrentResolution(cam.videoWidth+"x"+cam.videoHeight);
     setSelectedCameraLabel(camLabel);
   }
 
@@ -29,6 +38,12 @@ function App() {
     setSelectedCameraLabel(e.target.value);
   }
 
+  const onResolutionSelected = (e:any) => {
+    const width = e.target.value.split("x")[0];
+    const height = e.target.value.split("x")[1];
+    setDesiredResolution({width:width,height:height})
+  }
+
   return (
     <div className="container">
       <div className="barcode-scanner">
@@ -37,7 +52,7 @@ function App() {
             isActive={isActive}
             desiredCamera={desiredCamera}
             facingMode="environment"
-            desiredResolution={{width:1280,height:720}}
+            desiredResolution={desiredResolution}
             onOpened={onOpened}
             onClosed={onClosed}
             onDeviceListLoaded={onDeviceListLoaded}
@@ -46,7 +61,15 @@ function App() {
         </div>
         <div>
           <div>
-            <select ref={resSel}>
+            <select ref={resSel} value={currentResolution} onChange={(e) => onResolutionSelected(e)} >
+              <option value={currentResolution}>
+                {"got "+currentResolution}
+              </option>
+              {presetResolutions.map((res,idx) => (
+                <option key={idx} value={res.value.width+"x"+res.value.height}>
+                  {res.label}
+                </option>
+              ))}
             </select>
           </div>
           <div>
