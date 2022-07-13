@@ -12,7 +12,7 @@ export interface CameraProps{
   desiredResolution?:Resolution;
   facingMode?:string;
   children?: ReactNode;
-  onOpened?: (cam:HTMLVideoElement) => void;
+  onOpened?: (cam:HTMLVideoElement,camLabel:string) => void;
   onClosed?: () => void;
   onDeviceListLoaded?: (list:MediaDeviceInfo[]) => void;
 }
@@ -29,11 +29,15 @@ const VisionCamera = (props:CameraProps): React.ReactElement => {
   const camera = React.useRef(null);
 
   React.useEffect(()=>{
-    console.log("mounted");
-    console.log(props);
-    if (props.isActive === true) {
-      playWithDesired();
+    const init = async () => {
+      if (!devices.current) {
+        await loadDevices(); // load the camera devices list when the component is mounted
+      }
+      if (props.isActive === true) {
+        playWithDesired();
+      }
     }
+    init();
   },[])
 
   React.useEffect(() => {
@@ -161,7 +165,18 @@ const VisionCamera = (props:CameraProps): React.ReactElement => {
   const onCameraOpened = () => {
     console.log("onCameraOpened");
     if (props.onOpened) {
-      props.onOpened(camera.current);
+      props.onOpened(camera.current,getCurrentCameraLabel());
+    }
+  }
+
+  const getCurrentCameraLabel = () => {
+    try {
+      if (localStream.current) {
+        const stream = localStream.current as MediaStream;
+        return stream.getTracks()[0].label;
+      }    
+    } catch (error) {
+      return "";
     }
   }
 
