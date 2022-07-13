@@ -70,6 +70,9 @@ const VisionCamera = (props:CameraProps): React.ReactElement => {
       if (props.desiredResolution) {
         options.desiredResolution=props.desiredResolution;
       }
+      if (props.facingMode) {
+        options.facingMode=props.facingMode;
+      }
       play(options);
     }else{
       throw new Error("No camera detected");
