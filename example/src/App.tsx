@@ -12,7 +12,7 @@ function App() {
   const [isActive,setIsActive] = React.useState(true);
   const [cameras,setCameras] = React.useState([] as MediaDeviceInfo[]);
   const [selectedCameraLabel,setSelectedCameraLabel] = React.useState("");
-  const [desiredCamera, setDesiredCamera] = React.useState("founder");
+  const [desiredCamera, setDesiredCamera] = React.useState("back");
   const [desiredResolution, setDesiredResolution] = React.useState({width:1280,height:720});
   const [currentResolution, setCurrentResolution] = React.useState("");
   const resSel = React.useRef(null);
