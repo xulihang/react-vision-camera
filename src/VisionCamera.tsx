@@ -7,6 +7,7 @@ export interface Resolution{
 
 export interface CameraProps{
   isActive?:boolean;
+  isPause?:boolean;
   desiredCamera?:string;
   desiredResolution?:Resolution;
   facingMode?:string;
@@ -49,6 +50,18 @@ const VisionCamera = (props:CameraProps): React.ReactElement => {
       }
     }
   }, [props.isActive]);
+
+  React.useEffect(() => {
+    if (mounted.current === true) {
+      if (camera.current && props.isActive === true) {
+        if (props.isPause === true) {
+          camera.current.pause();
+        }else{
+          camera.current.play();
+        }
+      }
+    }
+  }, [props.isPause]);
 
   React.useEffect(() => {
     if (props.isActive === true && localStream.current && mounted.current === true) {

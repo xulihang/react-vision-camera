@@ -10,9 +10,10 @@ const presetResolutions = [
 
 function App() {
   const [isActive,setIsActive] = React.useState(true);
+  const [isPause,setIsPause] = React.useState(false);
   const [cameras,setCameras] = React.useState([] as MediaDeviceInfo[]);
   const [selectedCameraLabel,setSelectedCameraLabel] = React.useState("");
-  const [desiredCamera, setDesiredCamera] = React.useState("back");
+  const [desiredCamera, setDesiredCamera] = React.useState("founder");
   const [desiredResolution, setDesiredResolution] = React.useState({width:1280,height:720});
   const [currentResolution, setCurrentResolution] = React.useState("");
   const resSel = React.useRef(null);
@@ -50,6 +51,7 @@ function App() {
         <div className="vision-camera">
           <VisionCamera 
             isActive={isActive}
+            isPause={isPause}
             desiredCamera={desiredCamera}
             desiredResolution={desiredResolution}
             onOpened={onOpened}
@@ -79,6 +81,7 @@ function App() {
             </select>
           </div>
           <button onClick={() => setIsActive(!isActive)}>{isActive ? "Stop" : "Start"}</button>
+          <button onClick={() => setIsPause(!isPause)}>{isPause ? "Play" : "Pause"}</button>
         </div>
       </div>
     </div>
