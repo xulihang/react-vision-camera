@@ -27,7 +27,7 @@ const VisionCamera = (props:CameraProps): React.ReactElement => {
   const devices = React.useRef(null);
   const localStream = React.useRef(null);
   const camera = React.useRef(null);
-
+  const mounted = React.useRef(false);
   React.useEffect(()=>{
     const init = async () => {
       if (!devices.current) {
@@ -36,20 +36,23 @@ const VisionCamera = (props:CameraProps): React.ReactElement => {
       if (props.isActive === true) {
         playWithDesired();
       }
+      mounted.current = true;
     }
     init();
   },[])
 
   React.useEffect(() => {
-    if (props.isActive === true) {
-      playWithDesired();
-    }else{
-      stop();
+    if (mounted.current === true) {
+      if (props.isActive === true) {
+        playWithDesired();
+      }else{
+        stop();
+      }
     }
   }, [props.isActive]);
 
   React.useEffect(() => {
-    if (props.isActive === true) {
+    if (props.isActive === true && localStream.current && mounted.current === true) {
       playWithDesired();
     }
   }, [props.desiredCamera,props.desiredResolution,props.facingMode]);
@@ -57,6 +60,7 @@ const VisionCamera = (props:CameraProps): React.ReactElement => {
   const playWithDesired = async () => {
     if (!devices.current) {
       await loadDevices(); // load the camera devices list if it hasn't been loaded
+
     }
     let desiredDevice = getDesiredDevice(devices.current)
        
