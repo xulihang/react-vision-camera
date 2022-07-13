@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 import "./VisionCamera.css";
 
 export interface Resolution{
@@ -11,6 +11,7 @@ export interface CameraProps{
   desiredCamera?:string;
   desiredResolution?:Resolution;
   facingMode?:string;
+  children?: ReactNode;
   onOpened?: (cam:HTMLVideoElement) => void;
   onClosed?: () => void;
   onDeviceListLoaded?: (list:MediaDeviceInfo[]) => void;
@@ -167,6 +168,7 @@ const VisionCamera = (props:CameraProps): React.ReactElement => {
   return (
     <div className="camera-container full">
       <video className="camera full" ref={camera} muted autoPlay={true} playsInline={true} onLoadedData={onCameraOpened}></video>
+      {props.children}
     </div>
   )
 }

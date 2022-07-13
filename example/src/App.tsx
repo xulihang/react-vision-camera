@@ -26,7 +26,9 @@ function App() {
         onOpened={onOpened}
         onClosed={onClosed}
         onDeviceListLoaded={onDeviceListLoaded}
-      ></VisionCamera>
+      >
+        <button>Close</button>
+      </VisionCamera>
     </div>
   );
 }
