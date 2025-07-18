@@ -1,6 +1,10 @@
 
 ## React Vision Camera
 
+![version](https://img.shields.io/npm/v/react-vision-camera.svg)
+![downloads](https://img.shields.io/npm/dm/react-vision-camera.svg)
+![jsdelivr](https://img.shields.io/jsdelivr/npm/hm/react-vision-camera.svg)
+
 Camera component for React using `getUserMedia`. We can use this component for computer vision tasks like barcode scanning, text recognition, etc.
 
 [Online demo](https://shiny-naiad-b61af3.netlify.app/)
